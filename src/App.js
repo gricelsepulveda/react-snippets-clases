@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+//import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
@@ -7,7 +7,8 @@ class App extends Component {
   state = {
     value: '',
     sent: false,
-    error: false
+    error: false,
+    data: [],
   }
 
   //METODO PARA RECIBIR EL VALOR
@@ -58,7 +59,12 @@ class App extends Component {
   enviar(e){
     e.preventDefault()
     this.validateValue(this.state.value) === 'Perfect!'
-      ? this.setState({ sent: true, error: false})
+      ? this.setState({ 
+        sent: true, 
+        error: false, 
+        value: '',
+        data: this.state.data.concat(this.state.value)
+       })
       : this.setState({ error: true})
   }
 
@@ -70,12 +76,13 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <input onChange={ x => this.handleInputChange(x)}/>
+          <input value={this.state.value} onChange={ x => this.handleInputChange(x)}/>
           <button onClick={(e) => this.enviar(e)}>ENVIAR</button>
         </form>
         <div>{this.validateValue(this.state.value)}</div>
         {this.state.sent && <div>Formulario enviado con éxito</div>}
         {this.state.error && <div>El formulario tiene observaciones favor corregir</div>}
+        <ul>{this.state.data.map(x => <li>{x}</li>)}</ul>
       </div>
     )
   }

@@ -6,7 +6,8 @@ class App extends Component {
 
   state = {
     value: '',
-    sent: false
+    sent: false,
+    error: false
   }
 
   //METODO PARA RECIBIR EL VALOR
@@ -56,7 +57,9 @@ class App extends Component {
   //PARA ENVIAR
   enviar(e){
     e.preventDefault()
-    this.setState({ sent: true})
+    this.validateValue(this.state.value) === 'Perfect!'
+      ? this.setState({ sent: true, error: false})
+      : this.setState({ error: true})
   }
 
 
@@ -72,6 +75,7 @@ class App extends Component {
         </form>
         <div>{this.validateValue(this.state.value)}</div>
         {this.state.sent && <div>Formulario enviado con éxito</div>}
+        {this.state.error && <div>El formulario tiene observaciones favor corregir</div>}
       </div>
     )
   }

@@ -82,7 +82,7 @@ class App extends Component {
         <div>{this.validateValue(this.state.value)}</div>
         {this.state.sent && <div>Formulario enviado con éxito</div>}
         {this.state.error && <div>El formulario tiene observaciones favor corregir</div>}
-        <ul>{this.state.data.map(x => <li>{x}</li>)}</ul>
+        <ul>{this.state.data.map((x, i) => <li key={i}>{x}</li>)}</ul>
       </div>
     )
   }

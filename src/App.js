@@ -8,7 +8,9 @@ class App extends Component {
     value: '',
     sent: false,
     error: false,
-    data: [],
+    data: [
+      
+    ],
   }
 
   //METODO PARA RECIBIR EL VALOR
